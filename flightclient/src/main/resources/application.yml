@@ -1,0 +1,25 @@
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka/
+  instance:
+    hostname: localhost
+    
+server:
+  port: 8001
+spring:
+  application:
+    name: flight-client
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    beans:
+      enabled: true

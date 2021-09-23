@@ -1,0 +1,36 @@
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka/
+  instance:
+    hostname: localhost
+    
+server:
+  port: 7000
+spring:
+  application:
+    name: flight-api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: flight-admin
+          uri: lb://flight-admin
+          predicates:
+            - Path=/admin/**
+        - id: flight-client
+          uri: lb://flight-client
+          predicates:
+            - Path=/client/**  
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    beans:
+      enabled: true
